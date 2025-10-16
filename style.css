@@ -401,3 +401,45 @@ main{flex:1}
   .chat-window{right:-8px;bottom:78px;width:calc(100vw - 24px);max-height:80vh}
   .chat-launcher{right:0;bottom:0}
 }
+
+/* ===== FAQ ===== */
+.faq{padding:56px 16px;background:#f7f9fb}
+.faq .container{max-width:960px;margin:0 auto}
+.faq__title{margin:0 0 8px;font-size:clamp(22px,3.6vw,36px)}
+.faq__desc{margin:0 0 24px;color:#4b5a68;font-size:clamp(14px,2.4vw,16px)}
+
+.faq__list{display:grid;gap:12px}
+.faq__item{
+  background:#fff;border:1px solid #e6ebf0;border-radius:12px;overflow:hidden
+}
+
+/* убираем стандартный маркер и делаем кликабельную строку */
+.faq__q{
+  list-style:none;cursor:pointer;user-select:none;
+  padding:14px 44px 14px 16px;position:relative;
+  font-weight:600;color:#1b1f23
+}
+.faq__q::-webkit-details-marker{display:none}
+.faq__q:focus{outline:none}
+.faq__q:focus-visible{outline:2px solid #1b1f23;outline-offset:2px}
+
+/* стрелка */
+.faq__q::after{
+  content:"";position:absolute;right:16px;top:50%;width:10px;height:10px;
+  border-right:2px solid #1b1f23;border-bottom:2px solid #1b1f23;
+  transform:translateY(-50%) rotate(45deg);transition:transform .2s ease;
+}
+.faq__item[open] .faq__q::after{transform:translateY(-50%) rotate(-135deg)}
+
+/* ответ */
+.faq__a{
+  padding:0 16px 16px 16px;color:#2a3642;line-height:1.55;font-size:15px;
+  animation:faqFade .18s ease
+}
+@keyframes faqFade{from{opacity:.3}to{opacity:1}}
+
+/* мобильные отступы */
+@media (max-width:480px){
+  .faq{padding:40px 12px}
+  .faq__q{padding:12px 40px 12px 12px}
+}
