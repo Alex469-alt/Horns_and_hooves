@@ -83,10 +83,25 @@
   <main>
   <!-- главный экран с фоном -->
   <section class="hero">
-    <div class="hero__inner">
+    <div class="hero__grid container">
+    <div class="hero__content">
       <h1>Я УЧУСЬ <span class="blue-span">ПРОГРАММИРОВАТЬ</span> ООО "РОГА И КОПЫТА"</h1>
       <p>Наши рога самые вкусные на планете, а копыты невероятно цокательные</p>
     </div>
+
+    <form class="lead-form" id="lead-form" action="#" method="post" novalidate>
+      <h3>Только для элитных клиентов</h3>
+      <p class="lead-form__desc">Оставьте нумар, и может быть мы когда нибудь вам перезвоним.</p>
+
+      <label class="field">
+        <span>Ваш номер телефона</span>
+        <input type="tel" name="phone" placeholder="+375 29 390 89 23" inputmode="tel" required>
+      </label>
+
+      <button type="submit" class="lead-btn">Жмакай</button>
+      <small class="lead-note">Нажимая кнопку, вы соглашаетесь со всеми нашими требованиями и <a href="#privacy">политикой</a>.</small>
+    </form>
+  </div>
   </section>
   </main>
 
