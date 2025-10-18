@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Спасибо</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Минимальные стили для экрана Спасибо */
+    .ty{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 16px;background:#f7f9fb}
+    .ty__card{max-width:720px;width:100%;background:#fff;border:1px solid #e6ebf0;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:28px}
+    .ty__title{margin:0 0 8px;font-size:clamp(22px,4vw,34px);color:#1b1f23}
+    .ty__desc{margin:0 0 16px;color:#475569;font-size:clamp(14px,2.6vw,16px);line-height:1.55}
+    .ty__phone{display:inline-block;margin:0 0 16px;font-weight:700;color:#0f766e}
+    .ty__actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 16px;border-radius:10px;border:1px solid transparent;cursor:pointer;font-weight:700}
+    .btn--primary{background:#0891B2;color:#fff}
+    .btn--ghost{background:#fff;color:#0891B2;border-color:#bfe6ef}
+    @media (max-width:480px){.ty__card{padding:20px}}
+  </style>
+</head>
+<body>
+  <main class="ty">
+    <section class="ty__card">
+      <h1 class="ty__title">Ну зачем вы это сделали???</h1>
+      <p class="ty__desc">Теперь у нас появилась РАБОТА! А мы еще бутик не доели</p>
+      <p id="ty-phone" class="ty__phone" hidden></p>
+      <div class="ty__actions">
+        <a href="index.html" class="btn btn--ghost">Хочу назад</a>
+        <a href="#privacy" class="btn btn--primary">Политика конфиденциальности</a>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
