@@ -356,6 +356,10 @@ main{flex:1}
 .lead-note a{color:#0891B2;text-decoration:none;border-bottom:1px solid transparent}
 .lead-note a:hover{border-bottom-color:#0891B2}
 
+/* ошибки формы */
+.field.invalid input{ border-color:#ef4444; box-shadow:0 0 0 3px rgba(239,68,68,.15) }
+.error-text{ color:#b91c1c; font-size:12px }
+
 /* Адаптив */
 @media (max-width:900px){
   .hero__grid{grid-template-columns:1fr;gap:20px}

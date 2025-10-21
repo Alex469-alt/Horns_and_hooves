@@ -61,6 +61,38 @@
         body: JSON.stringify(payload),
       });
 
+(function(){
+  const form  = document.getElementById('lead-form');
+  if(!form) return;
+  const input = document.getElementById('lead-phone');
+  const err   = document.getElementById('phone-error');
+
+  // функция проверки: минимум 5 цифр
+  const isValidPhone = (v) => (v.replace(/\D/g, '').length >= 5);
+
+  // live-валидация
+  input.addEventListener('input', () => {
+    if (isValidPhone(input.value)) {
+      form.querySelector('.field').classList.remove('invalid');
+      err.hidden = true;
+    }
+  });
+
+  // перехват отправки
+  form.addEventListener('submit', (e) => {
+    const ok = isValidPhone(input.value);
+    if (!ok) {
+      e.preventDefault();
+      form.querySelector('.field').classList.add('invalid');
+      err.hidden = false;
+      input.focus();
+    } else {
+      // опционально: нормализуем пробелы перед переходом
+      input.value = input.value.trim();
+    }
+  });
+})();
+
       // поддержка и JSON, и обычного текста
       let replyText = "";
       const ct = res.headers.get("content-type") || "";
@@ -82,3 +114,4 @@
     }
   });
 })();
+
