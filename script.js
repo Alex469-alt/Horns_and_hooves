@@ -61,38 +61,6 @@
         body: JSON.stringify(payload),
       });
 
-(function(){
-  const form  = document.getElementById('lead-form');
-  if(!form) return;
-  const input = document.getElementById('lead-phone');
-  const err   = document.getElementById('phone-error');
-
-  // функция проверки: минимум 5 цифр
-  const isValidPhone = (v) => (v.replace(/\D/g, '').length >= 5);
-
-  // live-валидация
-  input.addEventListener('input', () => {
-    if (isValidPhone(input.value)) {
-      form.querySelector('.field').classList.remove('invalid');
-      err.hidden = true;
-    }
-  });
-
-  // перехват отправки
-  form.addEventListener('submit', (e) => {
-    const ok = isValidPhone(input.value);
-    if (!ok) {
-      e.preventDefault();
-      form.querySelector('.field').classList.add('invalid');
-      err.hidden = false;
-      input.focus();
-    } else {
-      // опционально: нормализуем пробелы перед переходом
-      input.value = input.value.trim();
-    }
-  });
-})();
-
       // поддержка и JSON, и обычного текста
       let replyText = "";
       const ct = res.headers.get("content-type") || "";
@@ -115,3 +83,72 @@
   });
 })();
 
+// === Валидация формы заявки ===
+document.addEventListener('DOMContentLoaded', () => {
+  const form  = document.getElementById('lead-form');
+  if (!form) return;
+  const input = document.getElementById('lead-phone');
+  const err   = document.getElementById('phone-error');
+  const field = form.querySelector('.field');
+  const submitBtn = form.querySelector('.lead-btn');
+
+  // Проверка на минимум 7 цифр
+  const isValidPhone = v => {
+    const trimmed = v.trim();
+    if (!trimmed) return false;
+    const digits = trimmed.replace(/\D/g, '');
+    return digits.length >= 7;
+  };
+
+  // Обновление состояния кнопки (убираем блокировку)
+  const updateSubmitButton = () => {
+    // Кнопка всегда активна, валидация только при отправке
+  };
+
+  // Валидация при отправке
+  form.addEventListener('submit', e => {
+    const phoneValue = input.value.trim();
+    console.log('Form submit, phone value:', phoneValue);
+    
+    if (!phoneValue) {
+      e.preventDefault();
+      field.classList.add('invalid');
+      if (err) {
+        err.textContent = 'Введите номер телефона';
+        err.hidden = false;
+      }
+      input.focus();
+      console.log('Empty phone - showing error');
+      return false;
+    }
+    
+    if (!isValidPhone(phoneValue)) {
+      e.preventDefault();
+      field.classList.add('invalid');
+      if (err) {
+        err.textContent = 'Введите корректно номер телефона (минимум 7 цифр)';
+        err.hidden = false;
+      }
+      input.focus();
+      console.log('Invalid phone - showing error');
+      return false;
+    }
+    
+    console.log('Phone is valid, submitting form');
+    input.value = phoneValue;
+  });
+
+  // Валидация в реальном времени
+  input.addEventListener('input', () => {
+    const phoneValue = input.value.trim();
+    
+    if (phoneValue && isValidPhone(phoneValue)) { 
+      field.classList.remove('invalid'); 
+      if (err) err.hidden = true; 
+    }
+    updateSubmitButton();
+  });
+
+  // Инициализация состояния кнопки
+  updateSubmitButton();
+});
