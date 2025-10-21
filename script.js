@@ -149,3 +149,74 @@ document.addEventListener('DOMContentLoaded', () => {
   if (err) err.style.display = 'none';
   updateSubmitButton();
 });
+
+// === AI Demo: отправка в n8n и ответ в чат Perplexity ===
+(function(){
+  const webhook = "https://alex87ai.ru/webhook/ae892d5f-98e7-4ff2-be54-26b98c9ff636";
+  const form = document.getElementById("ai-form");
+  if (!form) return;
+
+  const input = document.getElementById("ai-text");
+  const send  = document.getElementById("ai-send");
+  const box   = document.getElementById("ai-messages");
+
+  const sidKey = "ai_demo_sid";
+  let sid = localStorage.getItem(sidKey);
+  if (!sid) { sid = (crypto?.randomUUID?.() || Date.now()+Math.random().toString(16)); localStorage.setItem(sidKey, sid); }
+
+  const add = (text, who="bot")=>{
+    const el = document.createElement("div");
+    el.className = `ai-msg ${who}`;
+    el.textContent = text;
+    box.appendChild(el);
+    box.scrollTop = box.scrollHeight;
+    return el;
+  };
+  const typingOn = ()=>{ const el = document.createElement("div"); el.className="ai-msg system"; el.textContent="печатает…"; box.appendChild(el); box.scrollTop=box.scrollHeight; return el; };
+  const typingOff = el => el && el.remove();
+
+  form.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text) return;
+
+    add(text, "user");
+    input.value = "";
+    input.focus();
+    send.disabled = true;
+    const t = typingOn();
+
+    try{
+      const payload = {
+        sessionId: sid,
+        message: text,
+        page: location.href,
+        userAgent: navigator.userAgent,
+        ts: new Date().toISOString()
+      };
+
+      const res = await fetch(webhook, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      let reply = "";
+      const ct = res.headers.get("content-type") || "";
+      if (ct.includes("application/json")) {
+        const data = await res.json();
+        reply = data.reply || data.message || JSON.stringify(data);
+      } else {
+        reply = await res.text();
+      }
+      typingOff(t);
+      add(reply || "Нет ответа от сервера.");
+    }catch(err){
+      typingOff(t);
+      add("Ошибка соединения. Проверьте интернет или CORS.");
+      console.error(err);
+    }finally{
+      send.disabled = false;
+    }
+  });
+})();
