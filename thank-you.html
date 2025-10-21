@@ -100,7 +100,7 @@
     </section>
   </main>
 
-  <!-- Вставь перед </body> -->
+  <!-- Вставить перед </body> -->
 <footer class="site-footer">
   <div class="footer-container">
     <div class="footer-left">
@@ -117,5 +117,42 @@
     </div>
   </div>
 </footer>
+
+<script>
+  // читаем номер из ?phone=...
+  const params = new URLSearchParams(location.search);
+  const phone = (params.get('phone') || '').trim();
+
+  // валидность: минимум 5 цифр
+  const ok = v => v.replace(/\D/g, '').length >= 5;
+
+  // показать номер на странице
+  (function showPhone(){
+    if (!ok(phone)) return;
+    const el = document.getElementById('ty-phone');
+    if (el) { el.textContent = "Вы оставили номер: " + phone; el.hidden = false; }
+  })();
+
+  // отправка в n8n ТОЛЬКО при валидной заявке
+  (function sendToN8n(){
+    if (!ok(phone)) return;
+
+    const payload = {
+      kind: "lead_thankyou",
+      phone,
+      page: location.href,
+      referrer: document.referrer || null,
+      ua: navigator.userAgent,
+      ts: new Date().toISOString()
+    };
+
+    fetch("https://alex87ai.ru/webhook/8a0139fb-170d-4edd-8999-ddd4b8220117", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }).catch(() => {});
+  })();
+</script>
+
 </body>
 </html>

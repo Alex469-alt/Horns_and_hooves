@@ -61,6 +61,8 @@ html {
   padding: 12px;
 }
 
+.blue-span{color: #06b6d4;}
+
 /* styles.css */
 :root{
   --brand:#f1662a;        /* оранжевый логотипа */
@@ -399,4 +401,16 @@ footer.site-footer{ flex:0 0 auto }
 }
 @media (max-width:520px){
   .ai-benefits{grid-template-columns:1fr}
+}
+
+.tg-footer{
+  display:flex;align-items:center;gap:8px;
+  color:#06b6d4;text-decoration:none;font-weight:600;
+  padding:6px 10px;border-radius:999px;
+  background:rgba(255,255,255,.06);transition:background .2s,opacity .2s;
+}
+.tg-footer:hover{background:rgba(255,255,255,.12);opacity:.95}
+.tg-footer svg{flex:0 0 auto}
+@media (max-width:768px){
+  .tg-footer{justify-content:center;width:100%}
 }
