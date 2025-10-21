@@ -108,17 +108,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Валидация при отправке
   form.addEventListener('submit', e => {
     const phoneValue = input.value.trim();
-    console.log('Form submit, phone value:', phoneValue);
     
     if (!phoneValue) {
       e.preventDefault();
       field.classList.add('invalid');
       if (err) {
         err.textContent = 'Введите номер телефона';
-        err.hidden = false;
+        err.style.display = 'block';
       }
       input.focus();
-      console.log('Empty phone - showing error');
       return false;
     }
     
@@ -127,28 +125,27 @@ document.addEventListener('DOMContentLoaded', () => {
       field.classList.add('invalid');
       if (err) {
         err.textContent = 'Введите корректно номер телефона (минимум 7 цифр)';
-        err.hidden = false;
+        err.style.display = 'block';
       }
       input.focus();
-      console.log('Invalid phone - showing error');
       return false;
     }
     
-    console.log('Phone is valid, submitting form');
     input.value = phoneValue;
   });
 
-  // Валидация в реальном времени
+  // Валидация в реальном времени - убираем ошибку при вводе валидного номера
   input.addEventListener('input', () => {
     const phoneValue = input.value.trim();
     
     if (phoneValue && isValidPhone(phoneValue)) { 
       field.classList.remove('invalid'); 
-      if (err) err.hidden = true; 
+      if (err) err.style.display = 'none'; 
     }
     updateSubmitButton();
   });
 
-  // Инициализация состояния кнопки
+  // Инициализация - скрываем ошибку по умолчанию
+  if (err) err.style.display = 'none';
   updateSubmitButton();
 });
