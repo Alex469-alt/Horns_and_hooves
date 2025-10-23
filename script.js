@@ -156,20 +156,36 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Функция для добавления сообщения в виджет
-  function addChatMessage(content, isUser = false) {
+  function addChatMessage(content, isUser = false, typing = false) {
     const messageDiv = document.createElement('div');
     messageDiv.className = `msg-futuristic ${isUser ? 'user' : 'bot'}`;
     
-    const now = new Date();
-    const time = now.toLocaleTimeString('ru-RU', { 
-      hour: '2-digit', 
-      minute: '2-digit' 
-    });
-    
-    messageDiv.innerHTML = `<div class="msg-content">${content}</div>`;
+    const msgContent = document.createElement('div');
+    msgContent.className = 'msg-content';
+    messageDiv.appendChild(msgContent);
     
     chatMessages.appendChild(messageDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
+    
+    if (typing && !isUser) {
+      // Эффект печати для ответов бота
+      let index = 0;
+      const typingSpeed = 30; // Скорость печати (мс на символ)
+      
+      const typeNextChar = () => {
+        if (index < content.length) {
+          msgContent.textContent += content[index];
+          index++;
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+          setTimeout(typeNextChar, typingSpeed);
+        }
+      };
+      
+      typeNextChar();
+    } else {
+      // Обычное добавление без эффекта печати
+      msgContent.textContent = content;
+    }
   }
 
   // Функция для показа индикатора печати
@@ -240,15 +256,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       if (botMessage) {
-        addChatMessage(botMessage, false);
+        addChatMessage(botMessage, false, true); // true = эффект печати
       } else {
         console.warn('Не удалось извлечь ответ из:', response);
-        addChatMessage('Спасибо за ваше сообщение! Наш специалист свяжется с вами в ближайшее время.', false);
+        addChatMessage('Спасибо за ваше сообщение! Наш специалист свяжется с вами в ближайшее время.', false, true);
       }
     } catch (error) {
       console.error('Ошибка:', error);
       removeTypingIndicator();
-      addChatMessage('Произошла ошибка при отправке сообщения. Попробуйте еще раз.', false);
+      addChatMessage('Произошла ошибка при отправке сообщения. Попробуйте еще раз.', false, true);
     } finally {
       chatButton.disabled = false;
       chatButton.textContent = 'Отправить';
@@ -643,7 +659,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Функция для добавления сообщения в виджет
-  function addWidgetMessage(content, isUser = false) {
+  function addWidgetMessage(content, isUser = false, typing = false) {
     const messageDiv = document.createElement('div');
     messageDiv.className = `msg-futuristic ${isUser ? 'user' : 'bot'}`;
     
@@ -653,13 +669,38 @@ document.addEventListener('DOMContentLoaded', () => {
       minute: '2-digit' 
     });
     
-    messageDiv.innerHTML = `
-      <div class="msg-content">${content}</div>
-      <div class="msg-time">${time}</div>
-    `;
+    const msgContent = document.createElement('div');
+    msgContent.className = 'msg-content';
+    
+    const msgTime = document.createElement('div');
+    msgTime.className = 'msg-time';
+    msgTime.textContent = time;
+    
+    messageDiv.appendChild(msgContent);
+    messageDiv.appendChild(msgTime);
     
     widgetChatMessages.appendChild(messageDiv);
     widgetChatMessages.scrollTop = widgetChatMessages.scrollHeight;
+    
+    if (typing && !isUser) {
+      // Эффект печати для ответов бота
+      let index = 0;
+      const typingSpeed = 30; // Скорость печати (мс на символ)
+      
+      const typeNextChar = () => {
+        if (index < content.length) {
+          msgContent.textContent += content[index];
+          index++;
+          widgetChatMessages.scrollTop = widgetChatMessages.scrollHeight;
+          setTimeout(typeNextChar, typingSpeed);
+        }
+      };
+      
+      typeNextChar();
+    } else {
+      // Обычное добавление без эффекта печати
+      msgContent.textContent = content;
+    }
   }
 
   // Функция для показа индикатора печати в виджете
@@ -730,15 +771,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       if (botMessage) {
-        addWidgetMessage(botMessage, false);
+        addWidgetMessage(botMessage, false, true); // true = эффект печати
       } else {
         console.warn('Не удалось извлечь ответ из:', response);
-        addWidgetMessage('Спасибо за ваше сообщение! Наш специалист свяжется с вами в ближайшее время.', false);
+        addWidgetMessage('Спасибо за ваше сообщение! Наш специалист свяжется с вами в ближайшее время.', false, true);
       }
     } catch (error) {
       console.error('Ошибка:', error);
       removeWidgetTypingIndicator();
-      addWidgetMessage('Произошла ошибка при отправке сообщения. Попробуйте еще раз.', false);
+      addWidgetMessage('Произошла ошибка при отправке сообщения. Попробуйте еще раз.', false, true);
     } finally {
       widgetChatSend.disabled = false;
       widgetChatSend.textContent = 'Отправить';
