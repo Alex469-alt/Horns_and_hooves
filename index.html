@@ -88,11 +88,34 @@
       <div class="hero-content">
         <h1 class="hero-title">МОЙ ТЕСТОВЫЙ <span class="blue-span">САЙТ</span> ООО "РОГА И КОПЫТА"</h1>
         <p class="hero-subtitle">Наши рога самые вкусные на планете, а копыты невероятно цокательные</p>
-        <button class="cta-button">Узнать больше</button>
+        <button class="cta-button">Оставить заявку</button>
       </div>
     </div>
   </section>
   </main>
+
+<!-- Модальное окно для формы -->
+<div id="phone-modal" class="modal-overlay">
+  <div class="modal-content">
+    <button class="modal-close" aria-label="Закрыть">&times;</button>
+    <h2 class="modal-title">Введите Ваш номер</h2>
+    <p class="modal-subtitle">Мы свяжемся с вами в течении 15 минут</p>
+    <form id="phone-form" class="phone-form">
+      <div class="form-group">
+        <label for="phone-input">Номер телефона</label>
+        <input 
+          type="tel" 
+          id="phone-input" 
+          name="phone" 
+          placeholder="+375 29 123 45 67" 
+          required
+        />
+        <span class="error-message" id="phone-error"></span>
+      </div>
+      <button type="submit" class="submit-button">Отправить заявку</button>
+    </form>
+  </div>
+</div>
 
 <!-- ИИ виджет в футуристическом стиле -->
 <div id="chat-widget" class="chat-widget-futuristic">
@@ -109,7 +132,7 @@
     </div>
 
     <div class="chat-messages-futuristic" id="chat-messages">
-      <div class="msg-futuristic bot">Привет! Я ваш ИИ-консультант по контекстной рекламе. Чем могу помочь?</div>
+      <div class="msg-futuristic bot">Привет! Я зам директора по несложным вопросам. Чем могу помочь?</div>
     </div>
 
     <form class="chat-input-futuristic" id="chat-form">
@@ -249,122 +272,6 @@
     </a>
   </div>
   </footer>
-
-<script>
-// Подключение к вебхуку n8n
-const WEBHOOK_URL = 'https://alex87ai.ru/webhook/99133578-430a-4a2d-90df-3deda35f2b0d';
-
-// Функция для отправки сообщения в вебхук
-async function sendToWebhook(message, isUser = true) {
-  try {
-    const response = await fetch(WEBHOOK_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        message: message,
-        isUser: isUser,
-        timestamp: new Date().toISOString(),
-        source: 'index-page'
-      })
-    });
-    
-    if (response.ok) {
-      const data = await response.json();
-      return data;
-    } else {
-      console.error('Ошибка отправки в вебхук:', response.status);
-      return null;
-    }
-  } catch (error) {
-    console.error('Ошибка подключения к вебхуку:', error);
-    return null;
-  }
-}
-
-// Функция для добавления сообщения в чат
-function addMessage(content, isUser = false) {
-  const messagesContainer = document.getElementById('chat-messages');
-  const messageDiv = document.createElement('div');
-  messageDiv.className = `msg-futuristic ${isUser ? 'user' : 'bot'}`;
-  
-  const now = new Date();
-  const time = now.toLocaleTimeString('ru-RU', { 
-    hour: '2-digit', 
-    minute: '2-digit' 
-  });
-  
-  messageDiv.innerHTML = `
-    <div class="msg-content">${content}</div>
-    <div class="msg-time">${time}</div>
-  `;
-  
-  messagesContainer.appendChild(messageDiv);
-  messagesContainer.scrollTop = messagesContainer.scrollHeight;
-}
-
-// Обработка отправки сообщения
-document.getElementById('chat-form').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  
-  const input = document.getElementById('chat-text');
-  const button = document.getElementById('chat-send');
-  const message = input.value.trim();
-  
-  if (!message) return;
-  
-  // Добавляем сообщение пользователя
-  addMessage(message, true);
-  
-  // Очищаем поле ввода и блокируем кнопку
-  input.value = '';
-  button.disabled = true;
-  button.textContent = 'Отправка...';
-  
-  try {
-    // Отправляем в вебхук
-    const response = await sendToWebhook(message, true);
-    
-    if (response && response.reply) {
-      // Добавляем ответ от ИИ
-      setTimeout(() => {
-        addMessage(response.reply, false);
-      }, 1000);
-    } else {
-      // Если нет ответа от вебхука, показываем стандартное сообщение
-      setTimeout(() => {
-        addMessage('Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.', false);
-      }, 1000);
-    }
-  } catch (error) {
-    console.error('Ошибка:', error);
-    setTimeout(() => {
-      addMessage('Произошла ошибка при отправке сообщения. Попробуйте еще раз.', false);
-    }, 1000);
-  } finally {
-    // Разблокируем кнопку
-    button.disabled = false;
-    button.textContent = 'Отправить';
-  }
-});
-
-// Обработка открытия/закрытия чата
-document.querySelector('.chat-launcher-futuristic').addEventListener('click', function() {
-  const chatWindow = document.querySelector('.chat-window-futuristic');
-  chatWindow.classList.toggle('active');
-});
-
-document.querySelector('.chat-close-futuristic').addEventListener('click', function() {
-  const chatWindow = document.querySelector('.chat-window-futuristic');
-  chatWindow.classList.remove('active');
-});
-
-// Инициализация при загрузке страницы
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('ИИ виджет на главной странице инициализирован');
-});
-</script>
 
 </body>
 </html>

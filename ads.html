@@ -295,38 +295,46 @@
     </section>
 
 
-    <!-- ИИ форма в конце страницы -->
-    <section class="ai-form-section" id="ai-form-section">
+    <!-- ИИ консультант в футуристическом стиле -->
+    <section class="ai-section-futuristic" id="ai-form-section">
       <div class="container">
-        <h2 class="ai-form-title">Попробуйте прямо сейчас</h2>
-        <div class="ai-form-container">
-          <div class="ai-form-header">
-            <div class="ai-form-avatar">🤖</div>
-            <div class="ai-form-info">
-              <span class="ai-form-name">ИИ-консультант Анжела</span>
-              <span class="ai-form-status">онлайн 24/7</span>
+        <h2 class="ai-title-futuristic">Попробуйте прямо сейчас</h2>
+        <p class="ai-sub-futuristic">Пообщайтесь с нашим ИИ-консультантом и узнайте, как он может помочь вашему бизнесу</p>
+
+        <div class="ai-grid-futuristic">
+          <!-- ЧАТ -->
+          <div class="ai-chat-futuristic" aria-label="Демонстрация ИИ-консультанта">
+            <div class="ai-chat__head-futuristic">
+              <div class="ai-avatar-futuristic">🤖</div>
+              <div class="ai-about-futuristic">
+                <b>ИИ-ассистент</b>
+                <span class="ai-online-futuristic">онлайн</span>
+              </div>
             </div>
+
+            <div id="ads-ai-messages" class="ai-chat__body-futuristic">
+              <div class="ai-msg-futuristic bot">Привет! Я Анжела, ваш ИИ-консультант. Чем могу помочь?</div>
+            </div>
+
+            <form id="ads-ai-form" class="ai-chat__form-futuristic" autocomplete="off">
+              <input id="ads-ai-text" type="text" placeholder="Напишите вопрос…" required />
+              <button id="ads-ai-send" type="submit">Отправить</button>
+            </form>
           </div>
 
-          <div class="ai-form-messages" id="ai-form-messages">
-            <div class="ai-form-msg bot">
-              <div class="msg-content">Привет! Я Анжела, ваш ИИ-консультант. Чем могу помочь?</div>
-              <div class="msg-time">14:32</div>
-            </div>
-            <div class="ai-form-msg bot">
-              <div class="msg-content">Мы создаем ИИ-агентов для бизнеса: продавцов, консультантов, тренеров и репетиторов. Запуск за 1-3 дня!</div>
-              <div class="msg-time">14:33</div>
-            </div>
-            <div class="ai-form-msg user">
-              <div class="msg-content">Вы можете создать ИИ-консультанта для салона красоты?</div>
-              <div class="msg-time">14:33</div>
-            </div>
+          <!-- ПРЕИМУЩЕСТВА -->
+          <div class="ai-benefits-futuristic">
+            <h3>Возможности ИИ-агента:</h3>
+            <ul class="benefits-list-futuristic">
+              <li>✅ Консультирует клиентов 24/7</li>
+              <li>✅ Квалифицирует лиды автоматически</li>
+              <li>✅ Записывает на услуги и мероприятия</li>
+              <li>✅ Отвечает на частые вопросы</li>
+              <li>✅ Передает горячих клиентов менеджеру</li>
+              <li>✅ Собирает обратную связь</li>
+            </ul>
+            <p class="ai-note-futuristic">Запуск ИИ-агента занимает от 1 до 3 дней</p>
           </div>
-
-          <form class="ai-form-input" id="ai-form-input">
-            <input type="text" id="ai-form-text" placeholder="Напишите сообщение..." required />
-            <button type="submit" id="ai-form-send">Отправить</button>
-          </form>
         </div>
       </div>
     </section>
@@ -347,7 +355,7 @@
     </div>
 
     <div class="chat-messages-futuristic" id="chat-messages">
-      <div class="msg-futuristic bot">Привет! Я ваш ИИ-консультант по контекстной рекламе. Чем могу помочь?</div>
+      <div class="msg-futuristic bot">Привет! Я зам директора по несложным вопросам. Чем могу помочь?</div>
     </div>
 
     <form class="chat-input-futuristic" id="chat-form">
@@ -381,194 +389,5 @@
     </div>
   </footer>
 
-<script>
-// Плавный скролл к ИИ форме
-function scrollToAIForm() {
-  document.getElementById('ai-form-section').scrollIntoView({
-    behavior: 'smooth',
-    block: 'start'
-  });
-}
-
-// Подключение к вебхуку n8n
-const WEBHOOK_URL = 'https://alex87ai.ru/webhook/99133578-430a-4a2d-90df-3deda35f2b0d';
-
-// Функция для отправки сообщения в вебхук
-async function sendToWebhook(message, isUser = true) {
-  try {
-    const response = await fetch(WEBHOOK_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        message: message,
-        isUser: isUser,
-        timestamp: new Date().toISOString(),
-        source: 'ads-page'
-      })
-    });
-    
-    if (response.ok) {
-      const data = await response.json();
-      return data;
-    } else {
-      console.error('Ошибка отправки в вебхук:', response.status);
-      return null;
-    }
-  } catch (error) {
-    console.error('Ошибка подключения к вебхуку:', error);
-    return null;
-  }
-}
-
-// Функция для добавления сообщения в чат
-function addMessage(content, isUser = false) {
-  const messagesContainer = document.getElementById('ai-form-messages');
-  const messageDiv = document.createElement('div');
-  messageDiv.className = `ai-form-msg ${isUser ? 'user' : 'bot'}`;
-  
-  const now = new Date();
-  const time = now.toLocaleTimeString('ru-RU', { 
-    hour: '2-digit', 
-    minute: '2-digit' 
-  });
-  
-  messageDiv.innerHTML = `
-    <div class="msg-content">${content}</div>
-    <div class="msg-time">${time}</div>
-  `;
-  
-  messagesContainer.appendChild(messageDiv);
-  messagesContainer.scrollTop = messagesContainer.scrollHeight;
-}
-
-// Обработка отправки сообщения
-document.getElementById('ai-form-input').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  
-  const input = document.getElementById('ai-form-text');
-  const button = document.getElementById('ai-form-send');
-  const message = input.value.trim();
-  
-  if (!message) return;
-  
-  // Добавляем сообщение пользователя
-  addMessage(message, true);
-  
-  // Очищаем поле ввода и блокируем кнопку
-  input.value = '';
-  button.disabled = true;
-  button.textContent = 'Отправка...';
-  
-  try {
-    // Отправляем в вебхук
-    const response = await sendToWebhook(message, true);
-    
-    if (response && response.reply) {
-      // Добавляем ответ от ИИ
-      setTimeout(() => {
-        addMessage(response.reply, false);
-      }, 1000);
-    } else {
-      // Если нет ответа от вебхука, показываем стандартное сообщение
-      setTimeout(() => {
-        addMessage('Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.', false);
-      }, 1000);
-    }
-  } catch (error) {
-    console.error('Ошибка:', error);
-    setTimeout(() => {
-      addMessage('Произошла ошибка при отправке сообщения. Попробуйте еще раз.', false);
-    }, 1000);
-  } finally {
-    // Разблокируем кнопку
-    button.disabled = false;
-    button.textContent = 'Отправить';
-  }
-});
-
-// Обработка виджета чата
-document.getElementById('chat-form').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  
-  const input = document.getElementById('chat-text');
-  const button = document.getElementById('chat-send');
-  const message = input.value.trim();
-  
-  if (!message) return;
-  
-  // Добавляем сообщение пользователя
-  addMessageWidget(message, true);
-  
-  // Очищаем поле ввода и блокируем кнопку
-  input.value = '';
-  button.disabled = true;
-  button.textContent = 'Отправка...';
-  
-  try {
-    // Отправляем в вебхук
-    const response = await sendToWebhook(message, true);
-    
-    if (response && response.reply) {
-      // Добавляем ответ от ИИ
-      setTimeout(() => {
-        addMessageWidget(response.reply, false);
-      }, 1000);
-    } else {
-      // Если нет ответа от вебхука, показываем стандартное сообщение
-      setTimeout(() => {
-        addMessageWidget('Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.', false);
-      }, 1000);
-    }
-  } catch (error) {
-    console.error('Ошибка:', error);
-    setTimeout(() => {
-      addMessageWidget('Произошла ошибка при отправке сообщения. Попробуйте еще раз.', false);
-    }, 1000);
-  } finally {
-    // Разблокируем кнопку
-    button.disabled = false;
-    button.textContent = 'Отправить';
-  }
-});
-
-// Функция для добавления сообщения в виджет чата
-function addMessageWidget(content, isUser = false) {
-  const messagesContainer = document.getElementById('chat-messages');
-  const messageDiv = document.createElement('div');
-  messageDiv.className = `msg-futuristic ${isUser ? 'user' : 'bot'}`;
-  
-  const now = new Date();
-  const time = now.toLocaleTimeString('ru-RU', { 
-    hour: '2-digit', 
-    minute: '2-digit' 
-  });
-  
-  messageDiv.innerHTML = `
-    <div class="msg-content">${content}</div>
-    <div class="msg-time">${time}</div>
-  `;
-  
-  messagesContainer.appendChild(messageDiv);
-  messagesContainer.scrollTop = messagesContainer.scrollHeight;
-}
-
-// Обработка открытия/закрытия чата
-document.querySelector('.chat-launcher-futuristic').addEventListener('click', function() {
-  const chatWindow = document.querySelector('.chat-window-futuristic');
-  chatWindow.classList.toggle('active');
-});
-
-document.querySelector('.chat-close-futuristic').addEventListener('click', function() {
-  const chatWindow = document.querySelector('.chat-window-futuristic');
-  chatWindow.classList.remove('active');
-});
-
-// Инициализация при загрузке страницы
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('ИИ форма и виджет инициализированы');
-});
-</script>
 </body>
 </html>
