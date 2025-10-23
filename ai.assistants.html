@@ -87,7 +87,10 @@
         <div class="hero-content">
           <h1 class="hero-title">ИИ-агенты, которые работают 24/7 и приносят прибыль</h1>
           <p class="hero-subtitle">Внедряю ИИ-системы, которые берут на себя рутину и приносят результат круглосуточно</p>
-          <button class="cta-button" onclick="scrollToAIForm()">Пообщаться с ИИ-консультантом</button>
+          <div class="hero-buttons">
+            <button class="cta-button cta-primary" onclick="scrollToAIForm()">Пообщаться с ИИ-консультантом</button>
+            <button class="cta-button cta-secondary" id="leave-request-btn">Оставить заявку</button>
+          </div>
         </div>
       </div>
     </section>
@@ -361,6 +364,29 @@
     <form class="chat-input-futuristic" id="chat-form">
       <input id="chat-text" type="text" placeholder="Напишите сообщение…" autocomplete="off" required />
       <button id="chat-send" type="submit">Отправить</button>
+    </form>
+  </div>
+</div>
+
+<!-- Модальное окно для формы -->
+<div id="phone-modal" class="modal-overlay">
+  <div class="modal-content">
+    <button class="modal-close" aria-label="Закрыть">&times;</button>
+    <h2 class="modal-title">Введите Ваш номер</h2>
+    <p class="modal-subtitle">Мы свяжемся с вами в течении 15 минут</p>
+    <form id="phone-form" class="phone-form">
+      <div class="form-group">
+        <label for="phone-input">Номер телефона</label>
+        <input 
+          type="tel" 
+          id="phone-input" 
+          name="phone" 
+          placeholder="+375 29 123 45 67" 
+          required
+        />
+        <span class="error-message" id="phone-error"></span>
+      </div>
+      <button type="submit" class="submit-button">Отправить заявку</button>
     </form>
   </div>
 </div>

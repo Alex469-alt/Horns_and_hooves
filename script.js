@@ -840,8 +840,20 @@ document.addEventListener('DOMContentLoaded', function() {
   const modalClose = document.querySelector('.modal-close');
   const ctaButtons = document.querySelectorAll('.cta-button');
 
-  // Открытие модального окна при клике на кнопку "Узнать больше"
+  // Открытие модального окна при клике на кнопку "Оставить заявку"
+  const leaveRequestBtn = document.getElementById('leave-request-btn');
+  if (leaveRequestBtn) {
+    leaveRequestBtn.addEventListener('click', function() {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+  
+  // Также обрабатываем старые кнопки с классом cta-button (для совместимости)
   ctaButtons.forEach(button => {
+    // Пропускаем кнопки с onclick или с ID leave-request-btn
+    if (button.onclick || button.id === 'leave-request-btn') return;
+    
     button.addEventListener('click', function() {
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
