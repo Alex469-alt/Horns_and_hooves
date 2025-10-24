@@ -109,6 +109,757 @@
   box-shadow: 0 8px 30px rgba(0, 255, 255, 0.4);
 }
 
+/* Миссия, видение, цели */
+.mission-section-futuristic {
+  background: linear-gradient(180deg, #16213e 0%, #0f1b2e 50%, #0a0a0a 100%);
+  padding: 5rem 0;
+  color: white;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+.mission-main-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  background: linear-gradient(45deg, #ffffff, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mission-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mission-card {
+  background: rgba(26, 26, 46, 0.5);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 2.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at top left, rgba(0, 255, 255, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.mission-card.featured {
+  border-color: rgba(139, 92, 246, 0.5);
+  background: rgba(139, 92, 246, 0.1);
+  transform: scale(1.05);
+}
+
+.mission-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(0, 255, 255, 0.5);
+  box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2);
+}
+
+.mission-card.featured:hover {
+  transform: translateY(-10px) scale(1.05);
+  border-color: rgba(139, 92, 246, 0.8);
+  box-shadow: 0 15px 40px rgba(139, 92, 246, 0.3);
+}
+
+.mission-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  color: #00ffff;
+}
+
+.mission-card.featured .mission-icon {
+  color: #8b5cf6;
+}
+
+.mission-icon svg {
+  width: 60px;
+  height: 60px;
+}
+
+.mission-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.mission-text {
+  color: #cccccc;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+/* Адаптивность для миссии */
+@media (max-width: 768px) {
+  .mission-main-title {
+    font-size: 2rem;
+  }
+  
+  .mission-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .mission-card {
+    padding: 2rem;
+  }
+  
+  .mission-card.featured {
+    transform: scale(1);
+  }
+  
+  .mission-card.featured:hover {
+    transform: translateY(-10px) scale(1);
+  }
+}
+
+/* Что вы получаете - обзор услуг */
+.services-overview-futuristic {
+  background: linear-gradient(180deg, #0a0a0a 0%, #16213e 50%, #1a1a2e 100%);
+  padding: 5rem 0;
+  color: white;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+.services-overview-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  background: linear-gradient(45deg, #ffffff, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.services-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-overview-card {
+  background: rgba(26, 26, 46, 0.6);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 15px;
+  padding: 2.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.service-overview-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #00ffff, transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-overview-card:hover::before {
+  opacity: 1;
+}
+
+.service-overview-card.featured {
+  border-color: rgba(139, 92, 246, 0.5);
+  background: rgba(139, 92, 246, 0.15);
+  transform: scale(1.05);
+}
+
+.service-overview-card.featured::before {
+  background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+}
+
+.service-overview-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(0, 255, 255, 0.6);
+  box-shadow: 0 20px 50px rgba(0, 255, 255, 0.2);
+}
+
+.service-overview-card.featured:hover {
+  transform: translateY(-10px) scale(1.05);
+  border-color: rgba(139, 92, 246, 0.8);
+  box-shadow: 0 20px 50px rgba(139, 92, 246, 0.3);
+}
+
+.service-overview-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  color: #00ffff;
+}
+
+.service-overview-card.featured .service-overview-icon {
+  color: #8b5cf6;
+}
+
+.service-overview-icon svg {
+  width: 70px;
+  height: 70px;
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+.service-overview-heading {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.service-overview-text {
+  color: #cccccc;
+  line-height: 1.8;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+
+.service-overview-btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: linear-gradient(45deg, rgba(0, 255, 255, 0.1), rgba(0, 255, 255, 0.2));
+  border: 1px solid #00ffff;
+  color: #00ffff;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-overview-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(0, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.5s, height 0.5s;
+}
+
+.service-overview-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.service-overview-btn:hover {
+  background: linear-gradient(45deg, rgba(0, 255, 255, 0.2), rgba(0, 255, 255, 0.3));
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.service-overview-card.featured .service-overview-btn {
+  border-color: #8b5cf6;
+  color: #8b5cf6;
+  background: linear-gradient(45deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.2));
+}
+
+.service-overview-card.featured .service-overview-btn::before {
+  background: rgba(139, 92, 246, 0.2);
+}
+
+.service-overview-card.featured .service-overview-btn:hover {
+  background: linear-gradient(45deg, rgba(139, 92, 246, 0.2), rgba(139, 92, 246, 0.3));
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+}
+
+/* Адаптивность для обзора услуг */
+@media (max-width: 768px) {
+  .services-overview-title {
+    font-size: 2rem;
+  }
+  
+  .services-overview-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .service-overview-card {
+    padding: 2rem;
+  }
+  
+  .service-overview-card.featured {
+    transform: scale(1);
+  }
+  
+  .service-overview-card.featured:hover {
+    transform: translateY(-10px) scale(1);
+  }
+}
+
+/* Лид-магнит: Бесплатный видеоаудит */
+.lead-magnet-futuristic {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #8b5cf6 100%);
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+  border-top: 2px solid rgba(139, 92, 246, 0.3);
+  border-bottom: 2px solid rgba(139, 92, 246, 0.3);
+}
+
+.lead-magnet-futuristic::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.lead-magnet-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(26, 26, 46, 0.7);
+  border: 2px solid rgba(139, 92, 246, 0.5);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.lead-magnet-icon {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+.lead-magnet-icon svg {
+  width: 80px;
+  height: 80px;
+  color: #8b5cf6;
+  filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.6));
+  animation: pulse-icon 2s ease-in-out infinite;
+}
+
+@keyframes pulse-icon {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.6));
+  }
+  50% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.8));
+  }
+}
+
+.lead-magnet-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  line-height: 1.3;
+  background: linear-gradient(45deg, #ffffff, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.lead-magnet-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  text-align: left;
+  display: inline-block;
+}
+
+.lead-magnet-benefits li {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.lead-magnet-benefits li:hover {
+  transform: translateX(10px);
+  color: #8b5cf6;
+}
+
+.lead-magnet-benefits li svg {
+  width: 28px;
+  height: 28px;
+  margin-right: 1rem;
+  color: #00ffff;
+  flex-shrink: 0;
+}
+
+.lead-magnet-btn {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 1.2rem 3rem;
+  background: linear-gradient(45deg, #8b5cf6, #00ffff);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.lead-magnet-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.lead-magnet-btn:hover::before {
+  width: 400px;
+  height: 400px;
+}
+
+.lead-magnet-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(139, 92, 246, 0.6);
+}
+
+.lead-magnet-btn:active {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.5);
+}
+
+/* Адаптивность для лид-магнита */
+@media (max-width: 768px) {
+  .lead-magnet-content {
+    padding: 2rem;
+  }
+  
+  .lead-magnet-title {
+    font-size: 1.5rem;
+  }
+  
+  .lead-magnet-benefits {
+    text-align: center;
+  }
+  
+  .lead-magnet-benefits li {
+    font-size: 1rem;
+    justify-content: center;
+  }
+  
+  .lead-magnet-btn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    width: 100%;
+  }
+}
+
+/* Блог - секция новостей */
+.blog-section-futuristic {
+  background: linear-gradient(180deg, #0a0a0a 0%, #16213e 50%, #1a1a2e 100%);
+  padding: 5rem 0;
+  min-height: 100vh;
+  color: white;
+}
+
+.blog-main-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, #ffffff, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.blog-subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #cccccc;
+  margin-bottom: 4rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.blog-card {
+  background: rgba(26, 26, 46, 0.6);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 15px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #00ffff, transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(0, 255, 255, 0.6);
+  box-shadow: 0 20px 50px rgba(0, 255, 255, 0.2);
+}
+
+.blog-card:hover::before {
+  opacity: 1;
+}
+
+.blog-card-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
+}
+
+.blog-card-date {
+  color: #00ffff;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.blog-card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  line-height: 1.4;
+}
+
+.blog-card-excerpt {
+  color: #cccccc;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.blog-card-btn {
+  background: transparent;
+  border: 1px solid #00ffff;
+  color: #00ffff;
+  padding: 0.6rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.blog-card-btn:hover {
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  transform: translateX(5px);
+}
+
+/* Модальные окна для блога */
+.blog-modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  overflow-y: auto;
+}
+
+.blog-modal.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blog-modal-content {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-radius: 20px;
+  max-width: 800px;
+  width: 90%;
+  margin: 2rem;
+  padding: 3rem;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 255, 255, 0.3);
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.blog-modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 2rem;
+  background: transparent;
+  border: none;
+  color: #00ffff;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  line-height: 1;
+}
+
+.blog-modal-close:hover {
+  background: rgba(0, 255, 255, 0.1);
+  transform: rotate(90deg);
+}
+
+.blog-modal-image {
+  width: 100%;
+  margin-bottom: 2rem;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.blog-modal-placeholder {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 6rem;
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(139, 92, 246, 0.1));
+  filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.3));
+}
+
+.blog-modal-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.blog-modal-date {
+  color: #00ffff;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.blog-modal-text {
+  color: #cccccc;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.blog-modal-text p {
+  margin-bottom: 1.5rem;
+}
+
+.blog-modal-text strong {
+  color: #00ffff;
+  font-weight: 600;
+}
+
+.blog-modal-text ul {
+  margin: 1rem 0 1.5rem 1.5rem;
+}
+
+.blog-modal-text li {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+/* Адаптивность для блога */
+@media (max-width: 768px) {
+  .blog-main-title {
+    font-size: 2rem;
+  }
+  
+  .blog-subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .blog-modal-content {
+    padding: 2rem;
+    margin: 1rem;
+  }
+  
+  .blog-modal-title {
+    font-size: 1.5rem;
+  }
+  
+  .blog-modal-placeholder {
+    height: 200px;
+    font-size: 4rem;
+  }
+}
+
 /* Services секция */
 .services-futuristic {
   background: linear-gradient(180deg, #16213e 0%, #0a0a0a 20%, #0a0a0a 80%, #1a1a2e 100%);
@@ -432,10 +1183,34 @@
   line-height: 1.6;
 }
 
+.price-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  text-align: left;
+}
+
+.price-features-list li {
+  color: #cccccc;
+  padding: 0.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+}
+
+.price-features-list li i {
+  color: #00ffff;
+  margin-right: 0.75rem;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
 .format-price {
   font-size: 1.5rem;
   font-weight: 700;
   color: #00ffff;
+  margin-top: 1.5rem;
 }
 
 /* Кнопка "Заказать услугу" в блоке форматов */
@@ -1682,10 +2457,10 @@ html {
 
 .footer-container {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 3rem;
-  align-items: center;
-  max-width: 1200px;
+  grid-template-columns: 2fr auto 1fr;
+  gap: 2rem;
+  align-items: start;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem 4rem;
   position: relative;
@@ -1693,25 +2468,27 @@ html {
 
 .footer-left {
   color: #cccccc;
-  font-size: 0.9rem;
-  line-height: 1.8;
-  padding: 1rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  padding: 1rem 1rem 1rem 0;
   background: transparent;
   border-left: none;
   border-radius: 0;
+  max-width: 500px;
 }
 
 .footer-center {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 0.5rem;
 }
 
 .footer-center .phone {
   color: #00ffff;
   text-decoration: none;
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   transition: all 0.3s ease;
   padding: 0.75rem 1.5rem;
   border-radius: 30px;
@@ -1719,6 +2496,7 @@ html {
   background: transparent;
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .footer-center .phone::before {
@@ -1749,13 +2527,14 @@ html {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 1rem;
-  font-size: 0.9rem;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  padding-top: 0.5rem;
 }
 
 .footer-right span {
   color: #cccccc;
-  padding: 0.5rem;
+  padding: 0.25rem 0.5rem;
 }
 
 .privacy-link {
@@ -2013,17 +2792,24 @@ html {
   .footer-container {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 1.5rem;
+    gap: 2rem;
     padding-bottom: 3rem;
-  }
-
-  .footer-left,
-  .footer-right {
     align-items: center;
   }
 
+  .footer-left {
+    text-align: center;
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  .footer-right {
+    align-items: center;
+    text-align: center;
+  }
+
   .footer-center .phone {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 
   .tg-footer {

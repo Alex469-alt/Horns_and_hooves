@@ -878,6 +878,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
+  // Открытие модального окна при клике на кнопку "Получить видеоаудит" (лид-магнит)
+  const videoAuditBtn = document.getElementById('video-audit-btn');
+  if (videoAuditBtn) {
+    videoAuditBtn.addEventListener('click', function() {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+  
   // Также обрабатываем старые кнопки с классом cta-button (для совместимости)
   ctaButtons.forEach(button => {
     // Пропускаем кнопки с onclick или с ID leave-request-btn
@@ -1163,5 +1172,60 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeImageModal() {
     modal.classList.remove('active');
     document.body.style.overflow = ''; // Возвращаем прокрутку страницы
+  }
+});
+
+// ============================================
+// БЛОГ: МОДАЛЬНЫЕ ОКНА ДЛЯ НОВОСТЕЙ
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+  const blogCards = document.querySelectorAll('.blog-card');
+  const blogModals = document.querySelectorAll('.blog-modal');
+  const blogCloseButtons = document.querySelectorAll('.blog-modal-close');
+
+  // Открытие модального окна при клике на карточку
+  blogCards.forEach(card => {
+    card.addEventListener('click', function() {
+      const modalId = this.getAttribute('data-modal');
+      const modal = document.getElementById(modalId);
+      
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  // Закрытие модального окна при клике на кнопку закрытия
+  blogCloseButtons.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const modal = this.closest('.blog-modal');
+      closeBlogModal(modal);
+    });
+  });
+
+  // Закрытие модального окна при клике вне контента
+  blogModals.forEach(modal => {
+    modal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeBlogModal(this);
+      }
+    });
+  });
+
+  // Закрытие модального окна по клавише ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const activeModal = document.querySelector('.blog-modal.active');
+      if (activeModal) {
+        closeBlogModal(activeModal);
+      }
+    }
+  });
+
+  function closeBlogModal(modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
