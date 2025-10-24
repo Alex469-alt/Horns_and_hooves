@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Контекстная реклама под ключ</title>
+  <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Верхняя полоска -->
+  <div class="topbar">
+    <div class="container">
+      <a class="topitem" href="mailto:support@homefort-systems.dev" aria-label="email">
+        <span class="icn" aria-hidden="true">
+          <!-- mail -->
+          <svg viewBox="0 0 24 24"><path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v.3l-10 6-10-6V6zm0 3.2V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9.2l-9.3 5.6a2 2 0 0 1-2.1 0L2 9.2z"/></svg>
+        </span>
+        ads.alexliakh@gmail.com
+      </a>
+
+      <span class="topitem" aria-label="address">
+        <span class="icn" aria-hidden="true">
+          <!-- location -->
+          <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+        </span>
+        Большой город, Верхнее болото, 5
+      </span>
+
+      <a class="topitem" href="tel:+375293908923" aria-label="phone">
+        <span class="icn" aria-hidden="true">
+          <!-- phone -->
+          <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1.5 1.5 0 0 1 1.5-.36c1.6.53 3.3.82 5 .86a1.5 1.5 0 0 1 1.5 1.5V21a1.5 1.5 0 0 1-1.5 1.5A19.5 19.5 0 0 1 3 6.5 1.5 1.5 0 0 1 4.5 5H7a1.5 1.5 0 0 1 1.5 1.5c.04 1.7.33 3.4.86 5a1.5 1.5 0 0 1-.36 1.5l-2.38 2.8z"/></svg>
+        </span>
+        +375 29 390 89 23
+      </a>
+    </div>
+  </div>
+
+  <!-- хедер как на главной -->
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="На главную">
+        <span class="brand-mark" aria-hidden="true">
+          <!-- простая круглая "волна" -->
+          <svg viewBox="0 0 64 64">
+            <circle cx="32" cy="32" r="30" fill="currentColor" opacity=".15"/>
+            <path d="M32 14c-8 0-14 6-14 14 0 11 14 22 14 22s14-11 14-22c0-8-6-14-14-14zm0 8a6 6 0 1 1 0 12 6 6 0 0 1 0-12z" fill="currentColor"/>
+          </svg>
+        </span>
+        <div class="brand-text">
+          <strong>ООО РОГА И КОПЫТА</strong>
+          <span>Бодливость &amp; Копытозность</span>
+        </div>
+      </a>
+      <!-- Гамбургер (чекбокс без JS) -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Открыть меню">
+      <label for="nav-toggle" class="hamburger" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </label>
+
+      <!-- Оверлей для закрытия по тапу вне меню -->
+      <label for="nav-toggle" class="backdrop" aria-hidden="true"></label>
+
+      <nav class="nav" aria-label="Главное меню">
+        <!-- Кнопка закрытия внутри меню -->
+        <label for="nav-toggle" class="nav-close" aria-label="Закрыть меню">✕</label>
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="ai.assistants.html">ИИ ассистенты</a></li>
+          <li><a href="index.html">Носки</a></li>
+          <li><a href="index.html">Трусы</a></li>
+          <li><a href="index.html">Противогазы</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO в футуристическом стиле -->
+    <section class="hero-futuristic">
+      <div class="hero-bg">
+        <div class="digital-rain"></div>
+      </div>
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">Контекстная реклама в Google Ads и Яндекс Директ</h1>
+          <p class="hero-subtitle">Бесплатный видеоаудит и стратегия за 24 часа</p>
+          <div class="hero-buttons">
+            <button class="cta-button cta-primary" onclick="scrollToAIForm()">Спросить у ИИ-консультанта</button>
+            <button class="cta-button cta-secondary" id="leave-request-btn">Оставить заявку</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Почему контекстная реклама -->
+    <section class="services-futuristic">
+      <div class="container">
+        <h2 class="services-title">Почему контекстная реклама — быстрый способ роста:</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </div>
+            <h3>Целевые клики</h3>
+            <p>Платите только за целевые клики — без переплат</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+              </svg>
+            </div>
+            <h3>Прозрачная аналитика</h3>
+            <p>Системы аналитики отслеживают каждый рубль</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43 2.14-2.14 1.43 1.43L4.14 10.57 2.71 12l1.43 1.43 2.14-2.14 1.43 1.43L7.71 15.43 6.29 17l1.43 1.43L9.14 17l2.14 2.14 1.43-1.43L12.29 17l2.14 2.14 1.43-1.43L17.43 17l2.14 2.14 1.43-1.43L22 15.43l-1.43-1.43z"/>
+              </svg>
+            </div>
+            <h3>Быстрый старт</h3>
+            <p>Клиенты приходят в течение суток</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+              </svg>
+            </div>
+            <h3>Высокая рентабельность</h3>
+            <p>Выгода от контекста — до 600%</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="advantages-futuristic">
+      <div class="container">
+        <h2 class="advantages-title">Почему нам доверяют малый и средний бизнес</h2>
+        
+        <!-- Карточки преимуществ -->
+        <div class="advantages-grid">
+          <div class="advantage-card">
+            <div class="advantage-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+              </svg>
+            </div>
+            <h3>Более 5 лет опыта</h3>
+            <p>Проверенная экспертиза в контекстной рекламе</p>
+          </div>
+
+          <div class="advantage-card">
+            <div class="advantage-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/>
+              </svg>
+            </div>
+            <h3>Автоматизация процессов</h3>
+            <p>Снижение нагрузки на сотрудника до 35% через n8n</p>
+          </div>
+
+          <div class="advantage-card">
+            <div class="advantage-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+              </svg>
+            </div>
+            <h3>Полная прозрачность</h3>
+            <p>Вы все видите — прозрачные отчеты, Telegram уведомления</p>
+          </div>
+
+          <div class="advantage-card">
+            <div class="advantage-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 12l-2-2-1.4 1.4L9 15l9-9-1.4-1.4L9 12zm5-9h-4v2h4V3zm-4 4v2h4V7h-4zm0 4v2h4v-2h-4zm0 4v2h4v-2h-4z"/>
+              </svg>
+            </div>
+            <h3>Официальное сотрудничество</h3>
+            <p>Вся работа — официально, с договором</p>
+          </div>
+        </div>
+
+        <!-- Слайдер сертификатов -->
+        <div class="certificates-section">
+          <h3 class="certificates-heading">Наши сертификаты</h3>
+          <div class="certificates-slider">
+            <button class="slider-btn prev" aria-label="Предыдущий сертификат">‹</button>
+            <div class="certificates-track">
+              <div class="certificate-slide">
+                <img src="images/Ads/Сертификат контекстная реклама.jpg" alt="Сертификат 1">
+              </div>
+              <div class="certificate-slide">
+                <img src="images/Ads/Сертификат магия гугл.jpg" alt="Сертификат 2">
+              </div>
+              <div class="certificate-slide">
+                <img src="images/Ads/Сертификат вебфлоу.jpg" alt="Сертификат 3">
+              </div>
+              <div class="certificate-slide">
+                <img src="images/Ads/Сертификат нейросети.jpg" alt="Сертификат 4">
+              </div>
+              <div class="certificate-slide">
+                <img src="images/Ads/Сертификат фигма.jpg" alt="Сертификат 5">
+              </div>
+            </div>
+            <button class="slider-btn next" aria-label="Следующий сертификат">›</button>
+          </div>
+          <div class="slider-dots">
+            <span class="dot active" data-slide="0"></span>
+            <span class="dot" data-slide="1"></span>
+            <span class="dot" data-slide="2"></span>
+            <span class="dot" data-slide="3"></span>
+            <span class="dot" data-slide="4"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Кейсы -->
+    <section class="cases-futuristic">
+      <div class="container">
+        <h2 class="cases-title">Наши кейсы: бизнесы, как ваш</h2>
+        <div class="cases-grid">
+          
+          <!-- Кейс 1: Контрактные двигатели -->
+          <div class="case-card">
+            <div class="case-header">
+              <h3>Контрактные двигатели из ЕС и США</h3>
+              <div class="case-badge">B2C</div>
+            </div>
+            
+            <div class="case-screenshot">
+              <img src="images/Ads/Контр Двиг.jpg" alt="Скриншот рекламного кабинета - Контрактные двигатели" class="case-screenshot-img" title="Нажмите для увеличения">
+            </div>
+
+            <div class="case-content">
+              <div class="case-block">
+                <div class="case-label">Задача</div>
+                <p>Привлечь новых клиентов в конкурентной нише с высокой стоимостью клика</p>
+              </div>
+
+              <div class="case-block">
+                <div class="case-label">Решение</div>
+                <p>Запустили кампании в Google Ads и Яндекс Директ с глубокой сегментацией по маркам авто и регионам</p>
+              </div>
+
+              <div class="case-block">
+                <div class="case-label">Результат</div>
+                <div class="case-metrics">
+                  <div class="metric-item">
+                    <div class="metric-value">-45%</div>
+                    <div class="metric-label">Снижение CPL</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-value">+120</div>
+                    <div class="metric-label">Новых лидов/мес</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-value">380%</div>
+                    <div class="metric-label">ROMI</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="case-testimonial">
+                <p>"Реально работающая реклама. Заявки пошли уже в первый день запуска, качество лидов высокое"</p>
+                <span class="testimonial-author">— Александр, владелец компании</span>
+              </div>
+            </div>
+
+            <button class="case-cta" onclick="scrollToForm()">Получить похожий результат</button>
+          </div>
+
+          <!-- Кейс 2: Салон красоты -->
+          <div class="case-card">
+            <div class="case-header">
+              <h3>Кредитование населения</h3>
+              <div class="case-badge">B2C</div>
+            </div>
+            
+            <div class="case-screenshot">
+              <img src="images/Ads/Кредиты.jpg" alt="Скриншот рекламного кабинета - Кредиты" class="case-screenshot-img" title="Нажмите для увеличения">
+            </div>
+
+            <div class="case-content">
+              <div class="case-block">
+                <div class="case-label">Задача</div>
+                <p>Увеличить количество заявок на получение кредита</p>
+              </div>
+
+              <div class="case-block">
+                <div class="case-label">Решение</div>
+                <p>Настроили рекламу на поиске с акцентом на регионы + ретаргетинг</p>
+              </div>
+
+              <div class="case-block">
+                <div class="case-label">Результат</div>
+                <div class="case-metrics">
+                  <div class="metric-item">
+                    <div class="metric-value">+85%</div>
+                    <div class="metric-label">Рост заявок</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-value">+40%</div>
+                    <div class="metric-label">Качество лидов</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-value">520%</div>
+                    <div class="metric-label">ROMI</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="case-testimonial">
+                <p>"Теперь ежедневно приходит по 20-30 заявок. Пришлось нанять дополнительного специалиста"</p>
+                <span class="testimonial-author">— Андрей, владелиц коипании</span>
+              </div>
+            </div>
+
+            <button class="case-cta" onclick="scrollToForm()">Получить похожий результат</button>
+          </div>
+
+          <!-- Кейс 3: Интернет-магазин люстр -->
+          <div class="case-card">
+            <div class="case-header">
+              <h3>Интернет-магазин люстр "Вам Свет"</h3>
+              <div class="case-badge">E-commerce</div>
+            </div>
+            
+            <div class="case-screenshot">
+              <img src="images/Ads/Люстры.jpg" alt="Скриншот рекламного кабинета - Интернет-магазин люстр" class="case-screenshot-img" title="Нажмите для увеличения">
+            </div>
+
+            <div class="case-content">
+              <div class="case-block">
+                <div class="case-label">Задача</div>
+                <p>Увеличить повторные заказы и автоматизировать обработку заявок</p>
+              </div>
+
+              <div class="case-block">
+                <div class="case-label">Решение</div>
+                <p>Настроили точечную рекламу по категориям и брендам + автоматизацию через n8n для возврата клиентов</p>
+              </div>
+
+              <div class="case-block">
+                <div class="case-label">Результат</div>
+                <div class="case-metrics">
+                  <div class="metric-item">
+                    <div class="metric-value">+65%</div>
+                    <div class="metric-label">Повторные заказы</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-value">-30%</div>
+                    <div class="metric-label">Время обработки</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-value">410%</div>
+                    <div class="metric-label">ROMI</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="case-testimonial">
+                <p>"Автоматизация через n8n сэкономила нам 15 часов в неделю. Продажи выросли значительно"</p>
+                <span class="testimonial-author">— Егор, владелец магазина</span>
+              </div>
+            </div>
+
+            <button class="case-cta" onclick="scrollToForm()">Получить похожий результат</button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Как работаем -->
+    <section class="process-futuristic">
+      <div class="container">
+        <h2 class="process-title">Как мы работаем</h2>
+        <div class="process-timeline">
+          <div class="process-step">
+            <div class="step-number">01</div>
+            <div class="step-content">
+              <h3>Бесплатный аудит и консультация — до 12 часов</h3>
+              <p>Проводим анализ ниши и конкурентов, выявляем точки роста и формируем стратегию под ваши цели. Вы получаете конкретные рекомендации и план действий без обязательств.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-number">02</div>
+            <div class="step-content">
+              <h3>Настройка и запуск рекламы — до 72 часов</h3>
+              <p>Разрабатываем структуру кампаний, подбираем ключевые слова, создаем объявления и запускаем трафик. Все кампании проходят проверку на эффективность и соответствие целям бизнеса.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-number">03</div>
+            <div class="step-content">
+              <h3>Поддержка и оптимизация — постоянное снижение CPL</h3>
+              <p>Еженедельно анализируем результаты, тестируем гипотезы, перераспределяем бюджет. Главная цель — рост конверсий при минимальной стоимости лида.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-number">04</div>
+            <div class="step-content">
+              <h3>Отчётность и прозрачность</h3>
+              <p>Доступ к рекламным кабинетам у Вас. Предоставляем наглядные отчёты с ключевыми метриками: клики, конверсии, CPL, ROI. Вы всегда видите, куда идут Ваши деньги.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-number">05</div>
+            <div class="step-content">
+              <h3>Стратегическое развитие</h3>
+              <p>После стабилизации показателей масштабируем рекламные кампании, подключаем новые площадки и автоматизации, чтобы увеличить прибыль и охват.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Стоимость услуг -->
+    <section class="formats-futuristic">
+      <div class="container">
+        <h2 class="formats-title">Стоимость услуг</h2>
+        <div class="formats-grid">
+          <div class="format-card">
+            <div class="format-icon">🔍</div>
+            <h3>Аудит</h3>
+            <p>Проводим анализ рекламы и конкурентов, выявляем ошибки и точки роста. Даём чёткие рекомендации по улучшению и стратегии продвижения.</p>
+            <div class="format-price">0BYN</div>
+          </div>
+          <div class="format-card featured">
+            <div class="format-icon">🚀</div>
+            <h3>Настройка</h3>
+            <p>Создаём эффективные рекламные кампании под цели бизнеса: подбираем ключевые слова, пишем объявления, подключаем аналитику и запускаем трафик.</p>
+            <div class="format-price">от 300BYN</div>
+          </div>
+          <div class="format-card">
+            <div class="format-icon">📊</div>
+            <h3>Ведение</h3>
+            <p>Регулярно оптимизируем кампании, снижаем стоимость лида и повышаем конверсии. Предоставляем отчёты и рекомендации для стабильного роста.</p>
+            <div class="format-price">от 150BYN/мес</div>
+          </div>
+        </div>
+        
+        <div class="formats-cta-wrapper">
+          <button class="formats-cta-button" id="order-service-btn">Заказать услугу</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-futuristic">
+      <div class="container">
+        <h2 class="faq-title">Часто задаваемые вопросы</h2>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Что входит в ведение рекламы?</span>
+              <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+              <p>Оптимизация кампаний, тестирование объявлений, анализ ключевых слов, отчёты и постоянное снижение CPL.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Как быстро я увижу результат?</span>
+              <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+              <p>Первые данные — уже в первые дни после запуска. Оптимизация и рост эффективности — в течение 1–3 недель.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Вы берёте оплату за % от бюджета?</span>
+              <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+              <p>Нет. Фиксированная стоимость услуг, прозрачные условия без скрытых комиссий.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Какие гарантии?</span>
+              <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+              <p>Гарантируем корректную настройку, прозрачную отчётность и снижение стоимости лида при регулярной оптимизации.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Если у меня уже настроена реклама?</span>
+              <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+              <p>Проведём аудит, выявим ошибки и предложим, как улучшить результаты без перерасхода бюджета.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Блок записи на видеоаудит -->
+    <section class="video-audit-cta">
+      <div class="container">
+        <h2 class="audit-title">Запишитесь на видеоаудит</h2>
+        <p class="audit-subtitle">Пока эта услуга доступна бесплатно, но скоро станет платной — успейте получить профессиональный разбор вашей рекламы без вложений</p>
+        <div class="audit-buttons">
+          <button class="audit-btn primary" id="audit-request-btn">Оставить заявку</button>
+          <a href="tel:+375293908923" class="audit-btn secondary">Позвонить мне</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ИИ консультант в футуристическом стиле -->
+    <section class="ai-section-futuristic" id="ai-form-section">
+      <div class="container">
+        <h2 class="ai-title-futuristic">Остались вопросы?</h2>
+        <p class="ai-sub-futuristic">Спросите у моего ИИ помошника. Она работает 24/7</p>
+
+        <div class="ai-grid-futuristic">
+          <!-- ЧАТ -->
+          <div class="ai-chat-futuristic" aria-label="Демонстрация ИИ-консультанта">
+            <div class="ai-chat__head-futuristic">
+              <div class="ai-avatar-futuristic">🤖</div>
+              <div class="ai-about-futuristic">
+                <b>ИИ-ассистент</b>
+                <span class="ai-online-futuristic">онлайн</span>
+              </div>
+            </div>
+
+            <div id="ads-ai-messages" class="ai-chat__body-futuristic">
+              <div class="ai-msg-futuristic bot">Привет! Я Анжела, ваш ИИ-консультант. Чем могу помочь?</div>
+            </div>
+
+            <form id="ads-ai-form" class="ai-chat__form-futuristic" autocomplete="off">
+              <input id="ads-ai-text" type="text" placeholder="Напишите вопрос…" required />
+              <button id="ads-ai-send" type="submit">Отправить</button>
+            </form>
+          </div>
+
+          <!-- ПРЕИМУЩЕСТВА -->
+          <div class="ai-benefits-futuristic">
+            <h3>Возможности ИИ-агента:</h3>
+            <ul class="benefits-list-futuristic">
+              <li>✅ Консультирует клиентов 24/7</li>
+              <li>✅ Квалифицирует лиды автоматически</li>
+              <li>✅ Записывает на услуги и мероприятия</li>
+              <li>✅ Отвечает на частые вопросы</li>
+              <li>✅ Передает горячих клиентов менеджеру</li>
+              <li>✅ Собирает обратную связь</li>
+            </ul>
+            <p class="ai-note-futuristic">Запуск ИИ-агента занимает от 1 до 3 дней</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<!-- ИИ виджет в футуристическом стиле -->
+<div id="chat-widget" class="chat-widget-futuristic">
+  <button class="chat-launcher-futuristic" aria-label="Открыть чат">🤖</button>
+
+  <div class="chat-window-futuristic" aria-live="polite" aria-label="ИИ-консультант">
+    <div class="chat-header-futuristic">
+      <div class="chat-avatar-futuristic">🤖</div>
+      <div class="chat-info-futuristic">
+        <span class="chat-name-futuristic">ИИ-консультант</span>
+        <span class="chat-status-futuristic">онлайн</span>
+      </div>
+      <button class="chat-close-futuristic" aria-label="Закрыть">✕</button>
+    </div>
+
+    <div class="chat-messages-futuristic" id="chat-messages">
+      <div class="msg-futuristic bot">Привет! Я зам директора по несложным вопросам. Чем могу помочь?</div>
+    </div>
+
+    <form class="chat-input-futuristic" id="chat-form">
+      <input id="chat-text" type="text" placeholder="Напишите сообщение…" autocomplete="off" required />
+      <button id="chat-send" type="submit">Отправить</button>
+    </form>
+  </div>
+</div>
+
+<!-- Модальное окно для формы -->
+<div id="phone-modal" class="modal-overlay">
+  <div class="modal-content">
+    <button class="modal-close" aria-label="Закрыть">&times;</button>
+    <h2 class="modal-title">Введите Ваш номер</h2>
+    <p class="modal-subtitle">Мы свяжемся с вами в течении 15 минут</p>
+    <form id="phone-form" class="phone-form">
+      <div class="form-group">
+        <label for="phone-input">Номер телефона</label>
+        <input 
+          type="tel" 
+          id="phone-input" 
+          name="phone" 
+          placeholder="+375 29 123 45 67" 
+          required
+        />
+        <span class="error-message" id="phone-error"></span>
+      </div>
+      <button type="submit" class="submit-button">Отправить заявку</button>
+    </form>
+  </div>
+</div>
+
+<!-- Модальное окно для увеличения изображений -->
+<div id="image-modal" class="image-modal">
+  <span class="image-modal-close">&times;</span>
+  <img class="image-modal-content" id="modal-img" alt="Увеличенное изображение">
+  <div class="image-modal-caption"></div>
+</div>
+
+  <!-- Вставь перед </body> -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <span>ИП «Рога и Копыта» УНП 222333444 Большой город, Глубокое болото,25</span>
+      </div>
+
+      <div class="footer-center">
+        <a href="tel:+375293908923" class="phone">+375 29 390 89 23</a>
+      </div>
+
+      <div class="footer-right">
+        <span>все права защищены@2025</span>
+        <a href="privacy.html" class="privacy-link">Политика конфиденциальности</a>
+      </div>
+      <a href="https://t.me/n8n_ads_lab" class="tg-footer" target="_blank" rel="noopener" aria-label="Telegram">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+          <path d="M9.032 14.27l-.396 5.593c.566 0 .812-.243 1.106-.532l2.663-2.56 5.515 4.036c1.012.56 1.73.266 1.989-.936l3.607-16.908c.328-1.523-.55-2.12-1.528-1.748L1.565 8.87c-1.48.578-1.458 1.403-.252 1.78l5.572 1.742L19.27 5.38c.64-.389 1.22-.173.742.25z"/>
+        </svg>
+        <span>Подписывайтесь на мой&nbsp;ТГ канал</span>
+      </a>
+    </div>
+  </footer>
+
+</body>
+</html>
+

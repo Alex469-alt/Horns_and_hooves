@@ -469,6 +469,17 @@ function scrollToAIForm() {
   }
 }
 
+// Функция для открытия модального окна с формой заявки
+function scrollToForm() {
+  const modal = document.getElementById('phone-modal');
+  if (modal) {
+    modal.classList.add('active');
+  } else {
+    // Если модального окна нет, прокручиваем к форме ИИ
+    scrollToAIForm();
+  }
+}
+
 // ============================================
 // ADS.HTML - ИИ АССИСТЕНТ (АНЖЕЛА) В ДЕМО СЕКЦИИ
 // ============================================
@@ -849,6 +860,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
+  // Открытие модального окна при клике на кнопку "Заказать услугу"
+  const orderServiceBtn = document.getElementById('order-service-btn');
+  if (orderServiceBtn) {
+    orderServiceBtn.addEventListener('click', function() {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+  
+  // Открытие модального окна при клике на кнопку "Записаться на видеоаудит"
+  const auditRequestBtn = document.getElementById('audit-request-btn');
+  if (auditRequestBtn) {
+    auditRequestBtn.addEventListener('click', function() {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+  
   // Также обрабатываем старые кнопки с классом cta-button (для совместимости)
   ctaButtons.forEach(button => {
     // Пропускаем кнопки с onclick или с ID leave-request-btn
@@ -965,4 +994,174 @@ document.addEventListener('DOMContentLoaded', function() {
       submitButton.textContent = 'Отправить заявку';
     }
   });
+});
+
+// ============================================
+// СЛАЙДЕР СЕРТИФИКАТОВ
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+  const slider = document.querySelector('.certificates-track');
+  const slides = document.querySelectorAll('.certificate-slide');
+  const prevBtn = document.querySelector('.slider-btn.prev');
+  const nextBtn = document.querySelector('.slider-btn.next');
+  const dots = document.querySelectorAll('.dot');
+  
+  if (!slider || slides.length === 0) return;
+  
+  let currentIndex = 0;
+  const totalSlides = slides.length;
+  
+  // Функция обновления позиции слайдера
+  function updateSlider() {
+    const offset = -currentIndex * 100;
+    slider.style.transform = `translateX(${offset}%)`;
+    
+    // Обновляем активную точку
+    dots.forEach((dot, index) => {
+      if (index === currentIndex) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+  
+  // Следующий слайд
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlider();
+  }
+  
+  // Предыдущий слайд
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateSlider();
+  }
+  
+  // Переход к конкретному слайду
+  function goToSlide(index) {
+    currentIndex = index;
+    updateSlider();
+  }
+  
+  // Обработчики событий для кнопок
+  if (nextBtn) {
+    nextBtn.addEventListener('click', nextSlide);
+  }
+  
+  if (prevBtn) {
+    prevBtn.addEventListener('click', prevSlide);
+  }
+  
+  // Обработчики для точек
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      goToSlide(index);
+    });
+  });
+  
+  // Автоматическая прокрутка каждые 5 секунд
+  let autoplayInterval = setInterval(nextSlide, 5000);
+  
+  // Остановка автопрокрутки при наведении мыши
+  slider.addEventListener('mouseenter', () => {
+    clearInterval(autoplayInterval);
+  });
+  
+  // Возобновление автопрокрутки после убирания мыши
+  slider.addEventListener('mouseleave', () => {
+    autoplayInterval = setInterval(nextSlide, 5000);
+  });
+  
+  // Управление клавиатурой
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      prevSlide();
+      clearInterval(autoplayInterval);
+      autoplayInterval = setInterval(nextSlide, 5000);
+    } else if (e.key === 'ArrowRight') {
+      nextSlide();
+      clearInterval(autoplayInterval);
+      autoplayInterval = setInterval(nextSlide, 5000);
+    }
+  });
+  
+  // Touch события для мобильных устройств
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  slider.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+  
+  slider.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  });
+  
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchStartX - touchEndX;
+    
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        // Свайп влево - следующий слайд
+        nextSlide();
+      } else {
+        // Свайп вправо - предыдущий слайд
+        prevSlide();
+      }
+      
+      // Сбрасываем автопрокрутку
+      clearInterval(autoplayInterval);
+      autoplayInterval = setInterval(nextSlide, 5000);
+    }
+  }
+});
+
+// ============================================
+// МОДАЛЬНОЕ ОКНО ДЛЯ УВЕЛИЧЕНИЯ ИЗОБРАЖЕНИЙ
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('image-modal');
+  const modalImg = document.getElementById('modal-img');
+  const captionText = document.querySelector('.image-modal-caption');
+  const closeBtn = document.querySelector('.image-modal-close');
+  
+  if (!modal || !modalImg || !closeBtn) return;
+  
+  // Находим все изображения кейсов
+  const caseImages = document.querySelectorAll('.case-screenshot-img');
+  
+  // Добавляем обработчик клика на каждое изображение
+  caseImages.forEach(img => {
+    img.addEventListener('click', function() {
+      modal.classList.add('active');
+      modalImg.src = this.src;
+      captionText.textContent = this.alt;
+      document.body.style.overflow = 'hidden'; // Блокируем прокрутку страницы
+    });
+  });
+  
+  // Закрытие модального окна при клике на крестик
+  closeBtn.addEventListener('click', closeImageModal);
+  
+  // Закрытие модального окна при клике вне изображения
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal || e.target === closeBtn) {
+      closeImageModal();
+    }
+  });
+  
+  // Закрытие модального окна по клавише ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeImageModal();
+    }
+  });
+  
+  function closeImageModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = ''; // Возвращаем прокрутку страницы
+  }
 });
