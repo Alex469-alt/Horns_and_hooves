@@ -1139,16 +1139,37 @@ document.addEventListener('DOMContentLoaded', () => {
   
   if (!modal || !modalImg || !closeBtn) return;
   
-  // Находим все изображения кейсов
+  // Находим все изображения кейсов и сертификатов
   const caseImages = document.querySelectorAll('.case-screenshot-img');
+  const certificateImages = document.querySelectorAll('.certificate-slide img');
   
-  // Добавляем обработчик клика на каждое изображение
+  // Функция открытия модального окна
+  function openImageModal(imgElement) {
+    modal.classList.add('active');
+    modalImg.src = imgElement.src;
+    captionText.textContent = imgElement.alt || 'Сертификат';
+    document.body.style.overflow = 'hidden'; // Блокируем прокрутку страницы
+  }
+  
+  // Добавляем обработчик клика для кейсов
   caseImages.forEach(img => {
     img.addEventListener('click', function() {
-      modal.classList.add('active');
-      modalImg.src = this.src;
-      captionText.textContent = this.alt;
-      document.body.style.overflow = 'hidden'; // Блокируем прокрутку страницы
+      openImageModal(this);
+    });
+  });
+
+  // Добавляем обработчик клика для сертификатов
+  certificateImages.forEach(img => {
+    img.addEventListener('click', function(e) {
+      e.stopPropagation(); // Предотвращаем всплытие события к слайдеру
+      openImageModal(this);
+    });
+
+    // Поддержка touch для мобильных устройств
+    img.addEventListener('touchend', function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      openImageModal(this);
     });
   });
   
@@ -1200,6 +1221,15 @@ document.addEventListener('DOMContentLoaded', function() {
   blogCloseButtons.forEach(btn => {
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
+      e.preventDefault();
+      const modal = this.closest('.blog-modal');
+      closeBlogModal(modal);
+    });
+
+    // Добавляем поддержку touch событий для мобильных
+    btn.addEventListener('touchend', function(e) {
+      e.stopPropagation();
+      e.preventDefault();
       const modal = this.closest('.blog-modal');
       closeBlogModal(modal);
     });
@@ -1208,6 +1238,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // Закрытие модального окна при клике вне контента
   blogModals.forEach(modal => {
     modal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeBlogModal(this);
+      }
+    });
+
+    // Поддержка touch для закрытия вне контента
+    modal.addEventListener('touchend', function(e) {
       if (e.target === this) {
         closeBlogModal(this);
       }
