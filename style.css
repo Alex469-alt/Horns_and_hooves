@@ -2632,6 +2632,57 @@ html {
   cursor: not-allowed;
 }
 
+/* Стили для чекбокса согласия */
+.checkbox-group {
+  margin: 0.5rem 0;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  margin-top: 2px;
+  cursor: pointer;
+  accent-color: #00ffff;
+  border: 2px solid rgba(0, 255, 255, 0.5);
+  border-radius: 4px;
+}
+
+.checkbox-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.checkbox-text a {
+  color: #00ffff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+  transition: all 0.2s ease;
+}
+
+.checkbox-text a:hover {
+  color: #8b5cf6;
+  border-bottom-color: #8b5cf6;
+}
+
+.checkbox-label input[type="checkbox"]:focus {
+  outline: 2px solid #00ffff;
+  outline-offset: 2px;
+}
+
+.checkbox-label input[type="checkbox"]:checked {
+  background-color: #00ffff;
+}
+
 /* Адаптивность модального окна */
 @media (max-width: 768px) {
   .modal-content {
@@ -2656,6 +2707,16 @@ html {
     padding: 0.875rem 1.5rem;
     font-size: 1rem;
   }
+
+  .checkbox-text {
+    font-size: 0.85rem;
+  }
+
+  .checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -2673,6 +2734,20 @@ html {
     font-size: 1.5rem;
     width: 35px;
     height: 35px;
+  }
+
+  .checkbox-text {
+    font-size: 0.8rem;
+  }
+
+  .checkbox-label {
+    gap: 0.5rem;
+  }
+
+  .checkbox-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
   }
 }
 

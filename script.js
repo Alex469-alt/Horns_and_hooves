@@ -956,11 +956,36 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  // Обработчик изменения чекбокса для снятия ошибки
+  const privacyCheckbox = document.getElementById('privacy-checkbox');
+  const privacyError = document.getElementById('privacy-error');
+  
+  if (privacyCheckbox) {
+    privacyCheckbox.addEventListener('change', function() {
+      if (this.checked) {
+        privacyError.textContent = '';
+      }
+    });
+  }
+
   // Отправка формы
   phoneForm.addEventListener('submit', async function(e) {
     e.preventDefault();
 
     const phoneValue = phoneInput.value.trim();
+    const privacyCheckbox = document.getElementById('privacy-checkbox');
+    const privacyError = document.getElementById('privacy-error');
+
+    // Проверка согласия с политикой конфиденциальности
+    if (!privacyCheckbox.checked) {
+      privacyError.textContent = 'Необходимо согласие с политикой конфиденциальности';
+      privacyError.style.color = 'rgba(255, 68, 68, 0.9)';
+      privacyCheckbox.focus();
+      return;
+    } else {
+      privacyError.textContent = '';
+    }
+
     const validation = validatePhone(phoneValue);
 
     // Проверка валидности
