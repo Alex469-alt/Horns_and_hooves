@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /thank-you.html
+Disallow: /privacy.html
+
+Sitemap: https://next-pixel87.vercel.app/sitemap.xml
