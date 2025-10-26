@@ -3,7 +3,7 @@
 // ============================================
 
 // Подключение к вебхуку n8n
-const WEBHOOK_URL = 'https://alex87ai.ru/webhook/99133578-430a-4a2d-90df-3deda35f2b0d';
+const WEBHOOK_URL = 'https://alex87ai.ru/webhook/ae892d5f-98e7-4ff2-be54-26b98c9ff636';
 
 // Получение или создание sessionId
 function getSessionId() {
@@ -132,15 +132,15 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================
-// ИИ ВИДЖЕТ ДЛЯ INDEX.HTML
+// ИИ ВИДЖЕТ - РАБОТАЕТ НА ВСЕХ СТРАНИЦАХ
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
-  // Проверяем, что мы НЕ на странице ads.html
-  const aiFormSection = document.getElementById('ai-form-section');
-  if (aiFormSection) return; // Если есть ai-form-section, значит это ads.html - пропускаем
-  
   const chatForm = document.getElementById('chat-form');
   if (!chatForm) return;
+  
+  // Проверяем, не обработана ли уже эта форма (защита от двойной инициализации)
+  if (chatForm.dataset.widgetProcessed) return;
+  chatForm.dataset.widgetProcessed = 'true';
 
   const chatInput = document.getElementById('chat-text');
   const chatButton = document.getElementById('chat-send');
@@ -149,10 +149,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const chatWindow = document.querySelector('.chat-window-futuristic');
   const chatClose = document.querySelector('.chat-close-futuristic');
   
-  console.log('Виджет index.html инициализирован:', {
+  console.log('ИИ виджет инициализирован:', {
     chatLauncher,
     chatWindow,
-    chatClose
+    chatClose,
+    chatForm
   });
 
   // Функция для добавления сообщения в виджет
@@ -293,13 +294,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================
-// INDEX.HTML - ИИ АССИСТЕНТ (АНЖЕЛА) В ДЕМО СЕКЦИИ
+// ИИ АССИСТЕНТ (АНЖЕЛА) В ДЕМО СЕКЦИИ - INDEX.HTML
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
-  // Проверяем, что мы НЕ на странице ads.html
-  const aiFormSection = document.getElementById('ai-form-section');
-  if (aiFormSection) return; // Если есть ai-form-section, значит это ads.html - пропускаем
-  
   const aiForm = document.getElementById('ai-form');
   if (!aiForm) return;
 
@@ -383,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Отправляем сообщение на вебхук
       const sessionId = getSessionId();
       
-      const response = await fetch('https://alex87ai.ru/webhook/ae892d5f-98e7-4ff2-be54-26b98c9ff636', {
+      const response = await fetch(WEBHOOK_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -481,13 +478,9 @@ function scrollToForm() {
 }
 
 // ============================================
-// ADS.HTML - ИИ АССИСТЕНТ (АНЖЕЛА) В ДЕМО СЕКЦИИ
+// ИИ АССИСТЕНТ (АНЖЕЛА) В ДЕМО СЕКЦИИ - ADS.HTML
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
-  // Проверяем, что мы на странице ads.html
-  const aiFormSection = document.getElementById('ai-form-section');
-  if (!aiFormSection) return; // Если нет ai-form-section, значит это не ads.html
-  
   const adsAiForm = document.getElementById('ads-ai-form');
   if (!adsAiForm) return;
 
@@ -571,7 +564,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Отправляем сообщение на вебхук
       const sessionId = getSessionId();
       
-      const response = await fetch('https://alex87ai.ru/webhook/ae892d5f-98e7-4ff2-be54-26b98c9ff636', {
+      const response = await fetch(WEBHOOK_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -645,17 +638,17 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================
-// ADS.HTML - ИИ ВИДЖЕТ
+// ИИ ВИДЖЕТ - ДОПОЛНИТЕЛЬНАЯ ЛОГИКА ДЛЯ ADS.HTML
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
-  // Проверяем, что мы на странице ads.html
-  const aiFormSection = document.getElementById('ai-form-section');
-  if (!aiFormSection) return; // Если нет ai-form-section, значит это не ads.html
-  
   const widgetChatForm = document.getElementById('chat-form');
   const widgetChatMessages = document.getElementById('chat-messages');
   
   if (!widgetChatForm || !widgetChatMessages) return;
+  
+  // Проверяем, не обработана ли уже эта форма (используем тот же флаг, что и основной обработчик)
+  if (widgetChatForm.dataset.widgetProcessed) return;
+  widgetChatForm.dataset.widgetProcessed = 'true';
 
   const widgetChatText = document.getElementById('chat-text');
   const widgetChatSend = document.getElementById('chat-send');
